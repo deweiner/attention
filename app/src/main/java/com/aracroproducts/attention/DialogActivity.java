@@ -1,4 +1,4 @@
-package com.example.attention;
+package com.aracroproducts.attention;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 public class DialogActivity extends AppCompatActivity {
 

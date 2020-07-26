@@ -1,4 +1,4 @@
-package com.example.attention;
+package com.aracroproducts.attention;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.attention.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.zxing.client.android.Intents;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,12 +19,10 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.HashSet;
-import java.util.Iterator;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -53,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(this.getClass().getName(), "Attempting to add");
-                IntentIntegrator integrator = new IntentIntegrator(MainActivity.this);
-                integrator.setOrientationLocked(false);
-                integrator.setCaptureActivity(Add.class);
-                integrator.initiateScan();
+                Intent intent = new Intent(view.getContext(), Add.class);
+                startActivity(intent);
             }
         });
 
@@ -65,22 +58,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, DialogActivity.class);
             startActivityForResult(intent, NAME_CALLBACK);
         }
-        SharedPreferences friends = getSharedPreferences(FRIENDS, Context.MODE_PRIVATE);
-        HashSet<String> friendNameSet = new HashSet<>(friends.getStringSet("names", new HashSet<String>()));
 
-        RecyclerView friendList = findViewById(R.id.friends_list);
-        friendList.setLayoutManager(new LinearLayoutManager(this));
-
-        String[] dataset = new String[friendNameSet.size()];
-        if (!friendNameSet.isEmpty()) {
-            int position = 0;
-            for (String name: friendNameSet) {
-                dataset[position] = name;
-                position++;
-            }
-        }
-        FriendAdapter adapter = new FriendAdapter(dataset);
-        friendList.setAdapter(adapter);
 
     }
 
@@ -93,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("name", data.getStringExtra("name"));
                 editor.putString("id", makeId(data.getStringExtra("name")));
                 editor.apply();
-            case CUSTOMIZED_REQUEST_CODE:
+                break;
+            /*case CUSTOMIZED_REQUEST_CODE:
                 IntentResult result = IntentIntegrator.parseActivityResult(resultCode, data);
                 if(result.getContents() == null) {
                     Intent originalIntent = result.getOriginalIntent();
@@ -119,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                     editor1.putStringSet("names", friendNameSet);
                     editor1.apply();
                 }
+
+             */
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -149,6 +130,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences friends = getSharedPreferences(FRIENDS, Context.MODE_PRIVATE);
+        HashSet<String> friendNameSet = new HashSet<>(friends.getStringSet("names", new HashSet<String>()));
+
+        RecyclerView friendList = findViewById(R.id.friends_list);
+        friendList.setLayoutManager(new LinearLayoutManager(this));
+
+        String[] dataset = new String[friendNameSet.size()];
+        if (!friendNameSet.isEmpty()) {
+            int position = 0;
+            for (String name: friendNameSet) {
+                dataset[position] = name;
+                position++;
+            }
+        }
+        FriendAdapter adapter = new FriendAdapter(dataset);
+        friendList.setAdapter(adapter);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -169,5 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

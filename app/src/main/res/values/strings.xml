@@ -17,4 +17,14 @@
     <string name="confirm_alert">Send notification?</string>
     <string name="cancel_alert">Cancel</string>
     <string name="describe_QR">QR code for another user to add you</string>
+    <string name="invalid_id">You did not enter a valid ID</string>
+    <string name="no_id">Please enter or scan an ID</string>
+    <string name="scan_new">Please scan a new code</string>
+    <string name="no_camera">No camera detected</string>
+
+    <string name="permissions_needed">Permissions required to scan</string>
+    <string name="permission_details">Grant camera permission to scan your friend\'s QR code. You can also enter their user ID manually, if you prefer</string>
+
+    <string name="allow">Allow</string>
+    <string name="deny">Deny</string>
 </resources>
