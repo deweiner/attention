@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "357995852275",
+    "firebase_url": "https://attention-b923d.firebaseio.com",
+    "project_id": "attention-b923d",
+    "storage_bucket": "attention-b923d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357995852275:android:b33c8c78bd82e9dc5f2286",
+        "android_client_info": {
+          "package_name": "com.aracroproducts.attention"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357995852275-0udn3v1auklkvh573710h22a7upm2cbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ljTAlRg0h45nWMSGeMwibmIp-NW1M3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357995852275-0udn3v1auklkvh573710h22a7upm2cbi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
